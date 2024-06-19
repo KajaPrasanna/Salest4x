@@ -1,0 +1,53 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.1"
+metadata:
+  name: com.sales.salesprice
+type: application
+server:
+  customMiddleware:
+    - name: fiori-tools-proxy
+      afterMiddleware: compression
+      configuration:
+        ignoreCertError: false # If set to true, certificate errors will be ignored. E.g. self-signed certificates will be accepted
+        ui5:
+          path:
+            - /resources
+            - /test-resources
+          url: https://ui5.sap.com
+        backend:
+          - path: /sap
+            url: http://awsast0541.enggsap.accenture.com:8000
+            client: '110'
+            destination: T4X
+          - path: /sap
+            url: http://awsast0541.enggsap.accenture.com:8000
+            client: '110'
+            destination: T4X
+          - path: /sap/opu/odata/sap/ZDIVISIONLIST_CDS/
+            url: http://awsast0541.enggsap.accenture.com:8000
+            client: '110'
+            destination: T4X
+          - path: /sap/opu/odata/sap/ZPlantList_cds/
+            url: http://awsast0541.enggsap.accenture.com:8000
+            client: '110'
+            destination: T4X
+          - path: /sap/opu/odata/sap/ZCUSTOMERLIST_CDS/
+            url: http://awsast0541.enggsap.accenture.com:8000
+            client: '110'
+            destination: T4X
+          - path: /sap/opu/odata/sap/ZOFFERINGNAME_CDS/
+            url: http://awsast0541.enggsap.accenture.com:8000
+            client: '110'
+            destination: T4X
+    - name: fiori-tools-appreload
+      afterMiddleware: compression
+      configuration:
+        port: 35729
+        path: webapp
+        delay: 300
+    - name: fiori-tools-preview
+      afterMiddleware: fiori-tools-appreload
+      configuration:
+        component: com.sales.salesprice
+        ui5Theme: sap_horizon

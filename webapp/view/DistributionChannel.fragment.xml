@@ -1,0 +1,18 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog 
+        id="Selectdialog1"
+		title="DistributionChan"
+		search=".onSearch1"
+		confirm=".onDistValueHelpDialogClose"
+		cancel=".onValueHelpDialogClose"
+		showClearButton="true"
+		items="{DistModel>/}">
+		<StandardListItem
+			title="{DistModel>DistributionChannel}"
+			description="{DistModel>ChannelName}"
+			iconDensityAware="false"
+			iconInset="false"/>
+	</SelectDialog>
+</core:FragmentDefinition>

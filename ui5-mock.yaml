@@ -1,0 +1,86 @@
+specVersion: "3.1"
+metadata:
+  name: com.sales.salesprice
+type: application
+server:
+  customMiddleware:
+    - name: fiori-tools-proxy
+      afterMiddleware: compression
+      configuration:
+        ignoreCertError: false
+        ui5:
+          path:
+            - /resources
+            - /test-resources
+          url: https://ui5.sap.com
+        backend:
+          - path: /sap
+            url: http://awsast0541.enggsap.accenture.com:8000
+            client: "110"
+            destination: T4X
+          - path: /sap
+            url: http://awsast0541.enggsap.accenture.com:8000
+            client: "110"
+            destination: T4X
+          - path: /sap/opu/odata/sap/ZDIVISIONLIST_CDS/
+            url: http://awsast0541.enggsap.accenture.com:8000
+            client: "110"
+            destination: T4X
+          - path: /sap/opu/odata/sap/ZPlantList_cds/
+            url: http://awsast0541.enggsap.accenture.com:8000
+            client: "110"
+            destination: T4X
+          - path: /sap/opu/odata/sap/ZCUSTOMERLIST_CDS/
+            url: http://awsast0541.enggsap.accenture.com:8000
+            client: "110"
+            destination: T4X
+          - path: /sap/opu/odata/sap/ZOFFERINGNAME_CDS/
+            url: http://awsast0541.enggsap.accenture.com:8000
+            client: "110"
+            destination: T4X
+    - name: fiori-tools-appreload
+      afterMiddleware: compression
+      configuration:
+        port: 35729
+        path: webapp
+        delay: 300
+    - name: sap-fe-mockserver
+      beforeMiddleware: csp
+      configuration:
+        mountPath: /
+        services:
+          - urlPath: /sap/opu/odata/sap/API_SALESORGANIZATION_SRV
+            generateMockData: true
+            metadataXmlPath: ./webapp/localService/mainService/metadata.xml
+            mockdataRootPath: ./webapp/localService/data
+          - urlPath: /sap/opu/odata/sap/ZDISTRIBUTIONCHANNEL_CDS/
+            generateMockData: true
+            metadataXmlPath: ./webapp/localService/ZDISTRIBUTIONCHANNEL_CDS/metadata.xml
+            mockdataRootPath: ./webapp/localService/ZDISTRIBUTIONCHANNEL_CDS/mockdata
+          - urlPath: /sap/opu/odata/sap/ZDIVISIONLIST_CDS/
+            generateMockData: true
+            metadataXmlPath: ./webapp/localService/ZDIVISIONLIST_CDS/metadata.xml
+            mockdataRootPath: ./webapp/localService/ZDIVISIONLIST_CDS/mockdata
+          - urlPath: /sap/opu/odata/sap/ZPlantList_cds/
+            generateMockData: true
+            metadataXmlPath: ./webapp/localService/ZPlantList_cds/metadata.xml
+            mockdataRootPath: ./webapp/localService/ZPlantList_cds/mockdata
+          - urlPath: /sap/opu/odata/sap/ZCUSTOMERLIST_CDS/
+            generateMockData: true
+            metadataXmlPath: ./webapp/localService/ZCUSTOMERLIST_CDS/metadata.xml
+            mockdataRootPath: ./webapp/localService/ZCUSTOMERLIST_CDS/mockdata
+          - urlPath: /sap/opu/odata/sap/ZOFFERINGNAME_CDS/
+            metadataPath: ./webapp/localService/ZOFFERINGNAME_CDS/metadata.xml
+            mockdataPath: ./webapp/localService/ZOFFERINGNAME_CDS/mockdata
+            generateMockData: true
+        annotations:
+          - localPath: ./webapp/localService/ZDISTRIBUTIONCHANNEL_CDS/ZDISTRIBUTIONCHANNEL_CDS_Annotation.xml
+            urlPath: /destinations/T4X/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZDISTRIBUTIONCHANNEL_CDS_VAN',Version='0001')/$value/
+          - localPath: ./webapp/localService/ZDIVISIONLIST_CDS/ZDIVISIONLIST_CDS_Annotation.xml
+            urlPath: /destinations/T4X/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZDIVISIONLIST_CDS_VAN',Version='0001')/$value/
+          - localPath: ./webapp/localService/ZPlantList_cds/ZPlantList_cds_Annotation.xml
+            urlPath: /destinations/T4X/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZPLANTLIST_CDS_VAN',Version='0001')/$value/
+          - localPath: ./webapp/localService/ZCUSTOMERLIST_CDS/ZCUSTOMERLIST_CDS_Annotation.xml
+            urlPath: /destinations/T4X/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZCUSTOMERLIST_CDS_VAN',Version='0001')/$value/
+          - localPath: ./webapp/localService/ZOFFERINGNAME_CDS/ZOFFERINGNAME_CDS_Annotation.xml
+            urlPath: /destinations/T4X/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZOFFERINGNAME_CDS_VAN',Version='0001')/$value/

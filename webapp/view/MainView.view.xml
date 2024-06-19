@@ -1,0 +1,319 @@
+<mvc:View controllerName="com.sales.salesprice.controller.MainView"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+    xmlns:u="sap.ui.unified">
+        <Page id="page" title="{i18n>title}">  
+                <content>
+                    <Wizard 
+                    id="CreateProductWizard" 
+                    class="sapUiResponsivePadding--header sapUiResponsivePadding--content"
+					complete="wizardCompletedHandler">
+                    <WizardStep id="InitialFields" title="Offering Selection" validated="true">
+                        <f:Form id="FormDisplay354wideDual"
+                                editable="true" >
+                            <f:layout>
+                             <f:ResponsiveGridLayout
+					            labelSpanXL="4"
+					            labelSpanL="3"
+					            labelSpanM="4"
+					            labelSpanS="12"
+					            adjustLabelSpan="false"
+					            emptySpanXL="0"
+					            emptySpanL="4"
+					            emptySpanM="0"
+					            emptySpanS="0"
+					            columnsXL="2"
+					            columnsL="1"
+					            columnsM="1"
+					            singleContainerFullSize="false" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer id="Office" title="Organization Details" >
+                                    <f:formElements>
+						                <f:FormElement label="Sales Organization">
+							                <f:fields>
+								                <Input id="productInput"
+                                                    showSuggestion="true"
+                                                    showValueHelp="true"
+                                                    valueHelpRequest=".onSalesValueHelp"
+                                                    suggestionItems="{/A_SalesOrganizationText}">
+                                                    <suggestionItems>
+                                                    <core:Item text="{SalesOrganization}"/>
+                                                    </suggestionItems>
+                                                </Input>    
+							                </f:fields>
+						                </f:FormElement>
+                                        <f:FormElement label="Distribution Channel">
+							                <f:fields>
+								                <Input id="DistChannel_id"
+                                                    showSuggestion="true"
+                                                    showValueHelp="true"
+                                                    valueHelpRequest=".onDistValueHelp"
+                                                    suggestionItems="{/ZDISTRIBUTIONCHANNEL_CDS>/ZDistributionChannel}">
+                                                    <suggestionItems>
+                                                    <core:Item text="{DistributionChannel}"/>
+                                                    </suggestionItems>
+                                                </Input>    
+							                </f:fields>
+						                </f:FormElement>
+                                        <f:FormElement label="Division">
+							                <f:fields>
+								                <Input id="Division_id"
+                                                    showSuggestion="true"
+                                                    showValueHelp="true"
+                                                    valueHelpRequest=".onDivisionValueHelp"
+                                                    suggestionItems="{/ZDIVISIONLIST_CDS>/ZDivisionList}">
+                                                    <suggestionItems>
+                                                    <core:Item text="{Division}"/>
+                                                    </suggestionItems>
+                                                </Input>    
+							                </f:fields>
+						                </f:FormElement>
+                                        <f:FormElement label="Plant">
+							                <f:fields>
+								                <Input id="Plant_id"
+                                                    showSuggestion="true"
+                                                    showValueHelp="true"
+                                                    valueHelpRequest=".onPlantValueHelp"
+                                                    suggestionItems="{/ZPlantList_cds>/ZPLANTLIST}">
+                                                    <suggestionItems>
+                                                    <core:Item text="{Plant}"/>
+                                                    </suggestionItems>
+                                                </Input>    
+							                </f:fields>
+						                </f:FormElement>
+                                    </f:formElements>
+                                </f:FormContainer>
+                                 <f:FormContainer title="Customer Details" >
+                                    <f:formElements>
+                                        <f:FormElement label="CustomerID">
+                                            <f:fields>
+                                                <Input id="Customer_id"
+                                                    showSuggestion="true"
+                                                    showValueHelp="true"
+                                                    valueHelpRequest=".onCustomerValueHelp"
+                                                    suggestionItems="{/ZCUSTOMERLIST_CDS>/ZCustomerList}">
+                                                    <suggestionItems>
+                                                        <core:Item text="{CustomerId}"/>
+                                                    </suggestionItems> 
+                                                </Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="OfferingID">
+                                            <f:fields>
+                                                <Input id="Offering_id"
+                                                    showSuggestion="true"
+                                                    showValueHelp="true"
+                                                    valueHelpRequest=".onOfferValueHelp"
+                                                    suggestionItems="{/ZOFFERINGNAME_CDS>/ZOfferingName}">
+                                                    <suggestionItems>
+                                                        <core:Item text="{OfferingId}"/>
+                                                    </suggestionItems> 
+                                                </Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                    </f:formElements>
+                                </f:FormContainer> 
+                            </f:formContainers>
+                        </f:Form>
+                        <Table id="MyTable" width="50%"  >
+                        <headerToolbar>
+                                        <OverflowToolbar >
+                                            <Title text="Configure Offering"/>
+                                        </OverflowToolbar>
+                                    </headerToolbar>
+                                 <columns>
+                                 <Column >
+                                 <Text text="Product Name"></Text>
+                                 </Column>
+                                 <Column >
+                                 <Text text="Num"></Text>
+                                 </Column>
+                                 <Column >
+                                 <Button icon="sap-icon://delete"></Button>
+                                 </Column>
+                                 <Column>
+                                 <Button icon="sap-icon://technical-object"></Button>
+                                 </Column>
+                                 </columns>
+                                 <items></items>
+                                </Table>                   
+                    </WizardStep>
+                    <WizardStep id="Step" title="Cost Input" validated="true" >
+                        <f:Form editable="true" >
+                            <f:layout>
+                                <f:ResponsiveGridLayout 
+                                    labelSpanXL="4"
+                                        labelSpanL="3"
+                                        labelSpanM="3"
+                                        labelSpanS="12"
+                                        adjustLabelSpan="false"
+                                        emptySpanXL="4"
+                                        emptySpanL="4"
+                                        emptySpanM="4"
+                                        emptySpanS="0"
+                                        columnsXL="1"
+                                        columnsL="1"
+                                        columnsM="1"
+                                        singleContainerFullSize="false" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer >
+                                    <f:formElements>
+                                        <f:FormElement label="Selected Offering Name">
+                                            <f:fields>
+                                                <Input id="OfferName" value=""/>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Depriciation for Hardware">
+                                            <f:fields>
+                                                <Input value=""/>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Yearly Inflation Value">
+                                            <f:fields>
+                                                <Input value=""/>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Offering Term (in Years)">
+                                            <f:fields>
+                                                <Input value=""/>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Billing Freequency">
+                                            <f:fields>
+                                                <Input value=""/>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Consider usage based Billing?">
+                                            <f:fields>
+                                                <HBox >
+                                                    <RadioButton text="Yes"/>
+                                                    <RadioButton text="No"/>
+                                                </HBox>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Expected usage Billing?">
+                                            <f:fields>
+                                                <HBox >
+                                                    <RadioButton text="Low"/>
+                                                    <RadioButton text="Medium"/>
+                                                    <RadioButton text="High"/>
+                                                    <RadioButton text="Null"/>
+                                                </HBox>
+                                            </f:fields>
+                                        </f:FormElement>
+                                    </f:formElements>
+                                </f:FormContainer>
+                            </f:formContainers>
+                        </f:Form>
+                    </WizardStep>
+                    <WizardStep id="Step1" title="Profits" validated="true" >
+                        <f:Form editable="true" >
+                            <f:layout>
+                                <f:ResponsiveGridLayout 
+                                    labelSpanXL="4"
+                                        labelSpanL="3"
+                                        labelSpanM="3"
+                                        labelSpanS="12"
+                                        adjustLabelSpan="false"
+                                        emptySpanXL="4"
+                                        emptySpanL="4"
+                                        emptySpanM="4"
+                                        emptySpanS="0"
+                                        columnsXL="1"
+                                        columnsL="1"
+                                        columnsM="1"
+                                        singleContainerFullSize="false" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer >
+                                    <f:formElements>
+                                        <f:FormElement label="Org Level Profitability %">
+                                            <f:fields>
+                                                <Input value=""/>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Year wise Profitability target % (Year1)">
+                                            <f:fields>
+                                                <Input value=""/>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Year wise Profitability target % (Year2)">
+                                            <f:fields>
+                                                <Input value=""/>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Year wise Profitability target % (Year3)">
+                                            <f:fields>
+                                                <Input value=""/>
+                                            </f:fields>
+                                        </f:FormElement>
+                                    </f:formElements>
+                                </f:FormContainer>
+                            </f:formContainers>
+                        </f:Form>
+                    </WizardStep>
+                    <WizardStep id="Step2" title="Output" validated="true" >
+                        <f:Form editable="true" >
+                            <f:layout>
+                                <f:ResponsiveGridLayout 
+                                    labelSpanXL="4"
+                                        labelSpanL="3"
+                                        labelSpanM="3"
+                                        labelSpanS="12"
+                                        adjustLabelSpan="false"
+                                        emptySpanXL="4"
+                                        emptySpanL="4"
+                                        emptySpanM="4"
+                                        emptySpanS="0"
+                                        columnsXL="1"
+                                        columnsL="1"
+                                        columnsM="1"
+                                        singleContainerFullSize="false" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer >
+                                    <f:formElements>
+                                        <f:FormElement label="Offering Net Price">
+                                            <f:fields>
+                                                <Input value=""/>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Offering Target Price">
+                                            <f:fields>
+                                                <Input value=""/>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Max Permissible Discount">
+                                            <f:fields>
+                                                <Input value=""/>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Actual Discount">
+                                            <f:fields>
+                                                <Input value=""/>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Sales price after Actual Discount">
+                                            <f:fields>
+                                                <Input value=""/>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Predicted Profitability after Actual Discount">
+                                            <f:fields>
+                                                <Input value=""/>
+                                            </f:fields>
+                                        </f:FormElement>
+                                    </f:formElements>
+                                </f:FormContainer>
+                            </f:formContainers>
+                        </f:Form>
+                    </WizardStep>
+                    </Wizard>
+                </content>
+        </Page>
+</mvc:View>

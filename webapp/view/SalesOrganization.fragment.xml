@@ -1,0 +1,18 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog 
+        id="Selectdialog"
+		title="SalesOrg"
+		search=".onSearch"
+		confirm=".onValueHelpDialogClose"
+		cancel=".onValueHelpDialogClose"
+		showClearButton="true"
+		items="{/A_SalesOrganizationText}">
+		<StandardListItem
+			title="{SalesOrganization}"
+			description="{SalesOrganizationName}"
+			iconDensityAware="false"
+			iconInset="false"/>
+	</SelectDialog>
+</core:FragmentDefinition>

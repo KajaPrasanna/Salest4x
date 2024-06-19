@@ -1,0 +1,18 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog 
+        id="Selectdialog3"
+		title="Plant"
+		search=".onSearch3"
+		confirm=".onPlantValueHelpDialogClose"
+		cancel=".onValueHelpDialogClose"
+		showClearButton="true"
+		items="{PlantModel>/}">
+		<StandardListItem
+			title="{PlantModel>Plant}"
+			description="{PlantModel>PlantName}"
+			iconDensityAware="false"
+			iconInset="false"/>
+	</SelectDialog>
+</core:FragmentDefinition>

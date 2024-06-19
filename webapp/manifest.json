@@ -1,0 +1,275 @@
+{
+    "_version": "1.53.0",
+    "sap.app": {
+        "id": "com.sales.salesprice",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:basic",
+            "version": "1.13.6",
+            "toolsId": "e76236fd-a7d5-4fd7-bd68-e3bd9a00b378"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/sap/API_SALESORGANIZATION_SRV/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/mainService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "ZDISTRIBUTIONCHANNEL_CDS_Annotation": {
+                "uri": "/destinations/T4X/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZDISTRIBUTIONCHANNEL_CDS_VAN',Version='0001')/$value/",
+                "type": "ODataAnnotation",
+                "settings": {
+                    "localUri": "localService/ZDISTRIBUTIONCHANNEL_CDS/ZDISTRIBUTIONCHANNEL_CDS_Annotation.xml"
+                }
+            },
+            "ZDISTRIBUTIONCHANNEL_CDS": {
+                "uri": "/sap/opu/odata/sap/ZDISTRIBUTIONCHANNEL_CDS/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "ZDISTRIBUTIONCHANNEL_CDS_Annotation"
+                    ],
+                    "localUri": "localService/ZDISTRIBUTIONCHANNEL_CDS/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "ZDIVISIONLIST_CDS_Annotation": {
+                "uri": "/destinations/T4X/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZDIVISIONLIST_CDS_VAN',Version='0001')/$value/",
+                "type": "ODataAnnotation",
+                "settings": {
+                    "localUri": "localService/ZDIVISIONLIST_CDS/ZDIVISIONLIST_CDS_Annotation.xml"
+                }
+            },
+            "ZDIVISIONLIST_CDS": {
+                "uri": "/sap/opu/odata/sap/ZDIVISIONLIST_CDS/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "ZDIVISIONLIST_CDS_Annotation"
+                    ],
+                    "localUri": "localService/ZDIVISIONLIST_CDS/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "ZPlantList_cds_Annotation": {
+                "uri": "/destinations/T4X/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZPLANTLIST_CDS_VAN',Version='0001')/$value/",
+                "type": "ODataAnnotation",
+                "settings": {
+                    "localUri": "localService/ZPlantList_cds/ZPlantList_cds_Annotation.xml"
+                }
+            },
+            "ZPlantList_cds": {
+                "uri": "/sap/opu/odata/sap/ZPlantList_cds/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "ZPlantList_cds_Annotation"
+                    ],
+                    "localUri": "localService/ZPlantList_cds/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "ZCUSTOMERLIST_CDS_Annotation": {
+                "uri": "/destinations/T4X/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZCUSTOMERLIST_CDS_VAN',Version='0001')/$value/",
+                "type": "ODataAnnotation",
+                "settings": {
+                    "localUri": "localService/ZCUSTOMERLIST_CDS/ZCUSTOMERLIST_CDS_Annotation.xml"
+                }
+            },
+            "ZCUSTOMERLIST_CDS": {
+                "uri": "/sap/opu/odata/sap/ZCUSTOMERLIST_CDS/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "ZCUSTOMERLIST_CDS_Annotation"
+                    ],
+                    "localUri": "localService/ZCUSTOMERLIST_CDS/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "ZOFFERINGNAME_CDS_Annotation": {
+                "uri": "/destinations/T4X/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZOFFERINGNAME_CDS_VAN',Version='0001')/$value/",
+                "type": "ODataAnnotation",
+                "settings": {
+                    "localUri": "localService/ZOFFERINGNAME_CDS/ZOFFERINGNAME_CDS_Annotation.xml"
+                }
+            },
+            "ZOFFERINGNAME_CDS": {
+                "uri": "/sap/opu/odata/sap/ZOFFERINGNAME_CDS/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "ZOFFERINGNAME_CDS_Annotation"
+                    ],
+                    "localUri": "localService/ZOFFERINGNAME_CDS/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": false,
+        "dependencies": {
+            "minUI5Version": "1.114.0",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.f": {},
+                "sap.suite.ui.generic.template": {},
+                "sap.ui.comp": {},
+                "sap.ui.generic.app": {},
+                "sap.ui.table": {},
+                "sap.ushell": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "com.sales.salesprice.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {}
+            },
+            "ZDISTRIBUTIONCHANNEL_CDS": {
+                "dataSource": "ZDISTRIBUTIONCHANNEL_CDS",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            },
+            "ZDIVISIONLIST_CDS": {
+                "dataSource": "ZDIVISIONLIST_CDS",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            },
+            "ZPlantList_cds": {
+                "dataSource": "ZPlantList_cds",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            },
+            "ZCUSTOMERLIST_CDS": {
+                "dataSource": "ZCUSTOMERLIST_CDS",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            },
+            "ZOFFERINGNAME_CDS": {
+                "dataSource": "ZOFFERINGNAME_CDS",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "com.sales.salesprice.view",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "clearControlAggregation": false
+            },
+            "routes": [
+                {
+                    "name": "RouteMainView",
+                    "pattern": ":?query:",
+                    "target": [
+                        "TargetMainView"
+                    ]
+                }
+            ],
+            "targets": {
+                "TargetMainView": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "MainView",
+                    "viewName": "MainView"
+                }
+            }
+        },
+        "rootView": {
+            "viewName": "com.sales.salesprice.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "App"
+        }
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "comsalessalesprice"
+    }
+}
